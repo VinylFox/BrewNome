@@ -1,9 +1,12 @@
+baseurl = '/home/brewnome/www/brewnome.com'
+
+import sys
+sys.path.append(baseurl)
+sys.path.append(baseurl+'/api')
+
 import web
+from api import autocomplete
 
-urls = ('/.*', 'hello')
-
-class hello:
-  def GET(self):
-    return "Hello, world."
+urls = ('/api/autocomplete/.*', 'autocomplete')
 
 application = web.application(urls, globals()).wsgifunc()
