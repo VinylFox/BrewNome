@@ -3,7 +3,11 @@ import sqlobject as db
 db.sqlhub.processConnection = db.connectionForURI("mysql://brewnome:br3wl0v3r@localhost/brewnome")
 
 class Beer(db.SQLObject):
-    beer_name = db.StringCol(length=64)
+    beer_name = db.StringCol(length=100)
+    beer_description = db.StringCol(length=255)
+    beer_img_url = db.StringCol(length=255)
+    beer_likes = db.IntCol(default=0)
+    beer_dislikes = db.IntCol(default=0)
     beer_class = db.StringCol(length=64)
     beer_sub_class = db.StringCol(length=64)
     brewer_name = db.StringCol(length=64)
@@ -69,6 +73,7 @@ class Beer(db.SQLObject):
     herbs_5 = db.StringCol(length=64)
     clarity = db.StringCol(length=64)
     age = db.StringCol(length=64)
+    og = db.DecimalCol(size=10, precision=2)
 
 class Location(db.SQLObject):
     location_name= db.StringCol(length=64)
@@ -79,9 +84,13 @@ class Menu(db.SQLObject):
     menu_location = db.ForeignKey("Location", cascade=False)
     menu_beer = db.ForeignKey("Beer", cascade=False)
 
-#class Rating(db.SQLObject):
-#    rating_beer = db.ForeignKey("Beer", cascade=False)
-#    rating_user = db.ForeignKey("User", cascade=False)
+class User(db.SQLObject):
+    user_fb_id = db.IntCol()
+
+class Rating(db.SQLObject):
+    rating_beer = db.ForeignKey("Beer", cascade=False)
+    rating_user = db.ForeignKey("User", cascade=False)
+    rating_rate = db.IntCol()
 
 #class TaskQueue(db.SQLObject):
 #    task_group = db.ForeignKey("TaskQueueGroup", cascade=False)
