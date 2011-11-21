@@ -11,7 +11,7 @@ from string import lstrip
 from models import *
 import operator
 
-db.sqlhub.processConnection = db.connectionForURI("mysql://brewnome:br3wl0v3r@localhost/brewnome")
+db.sqlhub.processConnection = db.connectionForURI("mysql://brewnome:password@localhost/brewnome")
 
 urls = (
   '/api/beers/(\d+)', 'beer_details',
